@@ -1,5 +1,6 @@
 #include <vector>
 #include <set>
+#include <map>
 #include <iostream>
 #include <utility>
 using namespace std;
@@ -7,6 +8,7 @@ using namespace std;
 struct ListNode {
     int val;
     ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
 };
 
@@ -21,6 +23,9 @@ ListNode* BuildLinkList(std::vector<int> values) {
 }
 
 ListNode* BuildLinkListWithoutHeadnode(std::vector<int> values) {
+  if (values.empty()) {
+    return nullptr;
+  }
   ListNode* head = new ListNode(values[0]); // head node
   ListNode* p = head; // head node
   for (auto i = 1; i < values.size(); i++) {
@@ -80,6 +85,10 @@ std::pair<ListNode*, ListNode*> BuildIntersectLinkList(std::vector<int> values1,
 }
 
 void PrintLinkList(ListNode* head) {
+  if (!head) {
+    cout << "empty list" << endl;
+    return;
+  }
   auto p = head;
   while(p) {
     std::cout << p->val << " ";
