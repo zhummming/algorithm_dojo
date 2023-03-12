@@ -112,3 +112,10 @@ void PrintCycleLinkList(ListNode* head) {
   }
   std::cout << std::endl;
 }
+
+void PrintVector(const vector<int>& v) {
+  for (auto i : v) {
+    cout << i << " ";
+  }
+  cout << endl;
+}
