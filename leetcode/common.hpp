@@ -3,6 +3,7 @@
 #include <map>
 #include <iostream>
 #include <utility>
+#include <algorithm>
 using namespace std;
 
 struct ListNode {
@@ -118,4 +119,40 @@ void PrintVector(const vector<int>& v) {
     cout << i << " ";
   }
   cout << endl;
+}
+
+struct TreeNode {
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+TreeNode * BuildBinaryTreeFromMiddle(std::vector<int> & values)
+{
+  if (values.empty()) {
+    return nullptr;
+  }
+
+  int mid = values.size() / 2;
+  auto root = new TreeNode(values[mid]);
+  auto left_values  = std::vector<int>(values.begin(), values.begin() + mid);
+  auto right_values = std::vector<int>(values.begin() + mid + 1, values.end());
+
+  root->left  = BuildBinaryTreeFromMiddle(left_values);
+  root->right = BuildBinaryTreeFromMiddle(right_values);
+
+  return root;
+}
+
+void PrintTreePreorder(TreeNode* root)
+{
+  if (root == nullptr) {
+    return;
+  }
+  std::cout << root->val << std::endl;
+  PrintTreePreorder(root->left);
+  PrintTreePreorder(root->right);
 }
