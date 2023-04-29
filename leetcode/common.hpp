@@ -152,7 +152,73 @@ void PrintTreePreorder(TreeNode* root)
   if (root == nullptr) {
     return;
   }
-  std::cout << root->val << std::endl;
+  std::cout << root->val << ", ";
   PrintTreePreorder(root->left);
   PrintTreePreorder(root->right);
+}
+
+void PrintTreeInorder(TreeNode* root)
+{
+  if (root == nullptr) {
+    return;
+  }
+  PrintTreeInorder(root->left);
+  std::cout << root->val << ", ";
+  PrintTreeInorder(root->right);
+}
+
+void PrintTreePostorder(TreeNode* root)
+{
+  if (root == nullptr) {
+    return;
+  }
+  PrintTreePostorder(root->left);
+  PrintTreePostorder(root->right);
+  std::cout << root->val << ", ";
+}
+
+// tree node with next pointer to neighbor
+class Node {
+public:
+  int val;
+  Node* left;
+  Node* right;
+  Node* next;
+
+  Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+  Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+  Node(int _val, Node* _left, Node* _right, Node* _next)
+    : val(_val), left(_left), right(_right), next(_next) {}
+};
+
+Node * BuildNodeTreeFromMiddle(std::vector<int> & values)
+{
+  if (values.empty()) {
+    return nullptr;
+  }
+
+  int mid = values.size() / 2;
+  auto root = new Node(values[mid]);
+  auto left_values  = std::vector<int>(values.begin(), values.begin() + mid);
+  auto right_values = std::vector<int>(values.begin() + mid + 1, values.end());
+
+  root->left  = BuildNodeTreeFromMiddle(left_values);
+  root->right = BuildNodeTreeFromMiddle(right_values);
+
+  return root;
+}
+
+void PrintNodeTreePreorder(Node* root)
+{
+  if (root == nullptr) {
+    return;
+  }
+  std::cout << root->val << " ";
+  if (root->next) {
+    std::cout << root->next->val << "n ";
+  }
+  PrintNodeTreePreorder(root->left);
+  PrintNodeTreePreorder(root->right);
 }
