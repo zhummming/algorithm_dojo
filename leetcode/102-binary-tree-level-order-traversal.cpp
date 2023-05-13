@@ -1,7 +1,6 @@
 #include "common.hpp"
 
 // https://leetcode.cn/problems/binary-tree-level-order-traversal/
-// thought: 依然是序列化的思路，只不过放在后序的位置。解法参考： https://leetcode.cn/problems/find-duplicate-subtrees/comments/58714
 class Solution {
 public:
   vector<vector<int>> result;
@@ -13,7 +12,7 @@ public:
     std::queue<TreeNode*> level_nodes;
     level_nodes.push(root);
     while (!level_nodes.empty()) {
-      int curr_node_count = level_nodes.size();
+      int curr_node_count = level_nodes.size();  // 这里的curr_node_count很关键，决定了第二层循环的次数
       std::vector<int> curr_level_val;
       while (curr_node_count > 0) {
         auto node = level_nodes.front();

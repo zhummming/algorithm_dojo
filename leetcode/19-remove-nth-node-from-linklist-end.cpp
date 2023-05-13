@@ -1,13 +1,6 @@
 #include "common.hpp"
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+// https://leetcode.cn/problems/remove-nth-node-from-end-of-list/
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
@@ -42,7 +35,7 @@ public:
       }
       return head;
 
-      // 自己的方法写的太复杂太乱了
+      // 自己的方法写的太复杂太乱了,这个方法更加简洁！
       // if(!head | !head -> next) return NULL;
       // ListNode * fast = head, *slow = head;
       // for(int i = 0; i < n; i++){
@@ -56,6 +49,7 @@ public:
       //     fast = fast -> next;
       //     slow = slow -> next;
       // }
+      // 因为是删除最后N个节点，所以要到最后的
       // slow -> next = slow -> next -> next;
       // return head;
     }

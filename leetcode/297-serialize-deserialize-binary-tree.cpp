@@ -44,6 +44,7 @@ public:
     return root;
   }
   TreeNode* deserialize(string data) {
+    // 先解析数据到数组中，然后再去编译还原整棵树
     std::vector<std::string> nodes;
     std::stringstream ss(data);
     std::string item;

@@ -10,6 +10,7 @@
  */
 class Solution {
 public:
+    // A->B, B->A，合并
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         auto p1 = headA;
         auto p2 = headB;

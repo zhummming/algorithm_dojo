@@ -10,7 +10,8 @@
  */
 class Solution {
 public:
-    // https://leetcode.cn/problems/merge-k-sorted-lists/comments/641985  这是一个比较好的参考
+    // https://leetcode.cn/problems/merge-k-sorted-lists/comments/641985  这是一个比较好的参考,通过priority_queue来解决，很不错
+    // 每次的pop和push是有必要的，最小的node被加入之后，需要将其后续节点加进去，只要不为0
     ListNode* mergeKLists(vector<ListNode*>& lists) {
       auto dummy = new ListNode();
       auto p = dummy;
@@ -35,6 +36,7 @@ public:
         p = p->next;
 
         mapVI.erase(curr_vi);
+        // before reach nullptr, end of list
         if (lists[index]) {
           auto new_vi = std::make_pair(lists[index]->val, index);
           mapVI.insert(new_vi);

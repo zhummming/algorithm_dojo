@@ -26,6 +26,7 @@ public:
     void connect2(Node *root) {
         if (root == NULL || root->left == NULL)
             return;
+        // 放在前序位置是很有必要的，应该从根节点及其左右节点就开始指定这个next关系
         root->left->next = root->right;
         if (root->next)
             root->right->next = root->next->left;  // 这一步是关键

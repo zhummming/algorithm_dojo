@@ -16,6 +16,7 @@ public:
       return "#";
     }
     // nodes之间需要有空格，不然对于 11 1， 1 11这两组，就都变成了111而一样了
+    // 这里是前序遍历
     std::string str = std::to_string(root->val) + ' ' + helper(root->left, subtree_times, result) + ' ' + helper(root->right, subtree_times, result);
     // 如下是从叶子结点开始形成的子树，从后往前推进
     if (subtree_times[str] == 1) {

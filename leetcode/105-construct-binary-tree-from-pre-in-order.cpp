@@ -1,7 +1,6 @@
 #include "common.hpp"
 
 // https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
-// thought: 原地拉平，不能构建新的链表。可以用递归的方法，在左右分别拉平之后，将左子树挪到右边，然后右子树接到最后。后序位置做的就是这个操作
 class Solution {
 public:
   TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {

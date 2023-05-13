@@ -29,7 +29,7 @@ public:
       left = left->right;  // left has been flatten, so left node has no left sub tree, only right subtree
     }
     p->right = right;
-    root->left = nullptr;
+    root->left = nullptr;  // 记得empty
   }
 
   // thought: last记录flatten右子树，没错root到了一个新节点，就把这个last作为左子树给到root，于是有了一个从后往前的操作。注意要先递归right，确保先到最后一个节点
@@ -46,6 +46,7 @@ public:
       if (root == nullptr) return;
       flatten2(root->right);
       flatten2(root->left);
+      // 这么看的话，思路也很简单，就是左右都拉平了，然后right就是最新的root，left被置空！
       root->right = last;
       root->left = nullptr;
       last = root;

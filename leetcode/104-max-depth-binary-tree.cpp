@@ -25,6 +25,7 @@ public:
   }
 
   // another recursive function by solve sub tree
+  // 还是这个方法更加简单明了！！
   int maxDepthSub(TreeNode* root) {
       if (root == nullptr) {
           return 0;

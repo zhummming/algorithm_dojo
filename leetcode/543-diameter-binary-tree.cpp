@@ -11,6 +11,7 @@ public:
     int left_depth = maxDepth(root->left);
     int right_depth = maxDepth(root->right);
 
+    // 需要取左右最大深度，取更大的作为直径的大小
     diameter = std::max(left_depth + right_depth, diameter);
     return 1 + std::max(left_depth, right_depth);
   }
