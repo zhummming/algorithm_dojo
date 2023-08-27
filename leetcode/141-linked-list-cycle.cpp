@@ -11,32 +11,16 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        auto p1 = head;
-        auto p2 = head;
-        while (p1 && p2) {
-          p1 = p1->next;
-          // p2 = p2->next->next;  // check if p2 is null
-          p2 = p2->next;
-          if (!p2) {
-            return false;
-          }
-          p2 = p2->next;
-          if (p1 == p2) {
-            return true;
-          }
-        }
-        return false;
-
-        /// below is a better and clear version: https://leetcode.cn/problems/linked-list-cycle/comments/1149448
-        // ListNode* fast = head;
-        // ListNode* slow = head;
-        // while(fast != NULL && fast->next != NULL) {
-        //     slow = slow->next;
-        //     fast = fast->next->next;
-        //     // 快慢指针相遇，说明有环
-        //     if (slow == fast) return true;
-        // }
-        // return false;
+      ListNode* fast = head;
+      ListNode* slow = head;
+      // fast一定比slow先到nullptr，所以检查fast就够了
+      while(fast != NULL && fast->next != NULL) {
+          slow = slow->next;
+          fast = fast->next->next;
+          // 快慢指针相遇，说明有环
+          if (slow == fast) return true;
+      }
+      return false;
     }
 };
 

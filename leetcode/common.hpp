@@ -7,6 +7,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <queue>
+#include <stack>
 using namespace std;
 
 struct ListNode {
